@@ -7,7 +7,9 @@ The system combines **behavioral engagement data, academic performance indicator
 EduShield includes:
 
 • A full **machine learning pipeline**
+
 • **Explainable AI analysis using SHAP**
+
 • An **interactive Streamlit analytics dashboard** for educators and advisors
 
 ---
@@ -21,8 +23,11 @@ Traditional approaches often detect dropout **too late**, when intervention is n
 EduShield aims to:
 
 • Detect dropout risk **early in the learning cycle**
+
 • Explain **why a student is at risk**
+
 • Suggest **targeted interventions**
+
 • Provide educators with **actionable analytics tools**
 
 ---
@@ -34,8 +39,11 @@ EduShield aims to:
 Machine learning models estimate the probability of student dropout using:
 
 • learning engagement metrics
+
 • assessment performance indicators
+
 • behavioral activity patterns
+
 • sentiment signals from student discussions
 
 ---
@@ -47,7 +55,9 @@ Predictions are explained using **SHAP (SHapley Additive Explanations)**.
 This allows educators to understand:
 
 • which features contributed to a student's risk score
+
 • how engagement or academic performance affects predictions
+
 • which factors require immediate intervention
 
 ---
@@ -57,9 +67,13 @@ This allows educators to understand:
 Based on model explanations, the system suggests actionable interventions such as:
 
 • engagement reminders
+
 • tutoring support
+
 • deadline flexibility discussions
+
 • advisor outreach
+
 • emotional or counseling support
 
 ---
@@ -69,9 +83,13 @@ Based on model explanations, the system suggests actionable interventions such a
 A **Streamlit dashboard** provides real-time analytics including:
 
 • dropout probability for individual students
+
 • explainable AI feature importance
+
 • cohort risk visualization
+
 • engagement simulations
+
 • identification of high-risk students
 
 ---
@@ -133,8 +151,11 @@ The interactive dashboard provides the following analytics and monitoring tools:
 Multiple models were evaluated for dropout prediction:
 
 • Logistic Regression (Baseline)
+
 • Random Forest
+
 • Logistic Regression with SMOTE (class imbalance handling)
+
 • XGBoost
 
 ---
@@ -144,6 +165,7 @@ Multiple models were evaluated for dropout prediction:
 The models were evaluated on a **70 / 30 train-test split**.
 
 Dataset size: **32,593 students**
+
 Test samples: **9,778 students**
 
 | Model                          | Accuracy | Precision (Dropout=1) | Recall (Dropout=1) | F1 Score (Dropout=1) | ROC-AUC   |
@@ -166,50 +188,54 @@ The system uses the **Open University Learning Analytics Dataset (OULAD)**.
 The dataset contains:
 
 • student demographics
+
 • course information
+
 • assessment results
+
 • learning activity engagement
+
 • registration activity
 
 Additional engineered features include:
 
 • sentiment indicators derived from simulated forum posts
+
 • behavioral engagement metrics
+
 • temporal activity indicators
 
 ---
 
 # Project Structure
 
-```
-dropout_predictor
-│
-├── dashboard
-│   └── app.py
-│
-├── data
-│   ├── nlp
-│   │   ├── sentiment_features.csv
-│   │   └── student_forum_posts.csv
-│   │
-│   └── final_dataset.csv
-│
-├── src
-│   ├── build_dataset.py
-│   ├── explain_model.py
-│   ├── generate_forum_data.py
-│   ├── intervention_recommender.py
-│   ├── load_data.py
-│   ├── nlp_sentiment.py
-│   ├── prepare_ml_data.py
-│   ├── train_baseline_model.py
-│   ├── train_random_forest.py
-│   ├── train_smote_model.py
-│   └── train_xgboost.py
-│
-├── requirements.txt
+dropout_predictor  
+│  
+├── dashboard  
+│ └── app.py  
+│  
+├── data  
+│ ├── nlp  
+│ │ ├── sentiment_features.csv  
+│ │ └── student_forum_posts.csv  
+│ │  
+│ └── final_dataset.csv  
+│  
+├── src  
+│ ├── build_dataset.py  
+│ ├── explain_model.py  
+│ ├── generate_forum_data.py  
+│ ├── intervention_recommender.py  
+│ ├── load_data.py  
+│ ├── nlp_sentiment.py  
+│ ├── prepare_ml_data.py  
+│ ├── train_baseline_model.py  
+│ ├── train_random_forest.py  
+│ ├── train_smote_model.py  
+│ └── train_xgboost.py  
+│  
+├── requirements.txt  
 └── README.md
-```
 
 ---
 
@@ -217,53 +243,50 @@ dropout_predictor
 
 ## Install Dependencies
 
-```
 pip install -r requirements.txt
-```
 
 ---
 
 ## Generate NLP Sentiment Features
 
-```
 python src/nlp_sentiment.py
-```
 
 ---
 
 ## Build the Machine Learning Dataset
 
-```
 python src/build_dataset.py
-```
 
 ---
 
 ## Train the Model
 
-```
 python src/train_xgboost.py
-```
 
 ---
 
 ## Launch the Dashboard
 
-```
 streamlit run dashboard/app.py
-```
 
 ---
 
 # Technologies Used
 
 • Python
+
 • Pandas
+
 • Scikit-learn
+
 • XGBoost
+
 • SHAP (Explainable AI)
+
 • Streamlit
+
 • Matplotlib
+
 • Plotly
 
 ---
@@ -273,8 +296,11 @@ streamlit run dashboard/app.py
 EduShield can be deployed in:
 
 • universities
+
 • online learning platforms
+
 • learning management systems
+
 • academic advising systems
 
 to enable **data-driven student success initiatives and early intervention strategies**.
@@ -286,9 +312,13 @@ to enable **data-driven student success initiatives and early intervention strat
 Possible extensions include:
 
 • real-time LMS integration
+
 • temporal dropout prediction models
+
 • sequential deep learning models for behavioral patterns
+
 • automated intervention recommendation systems
+
 • institution-level cohort risk monitoring
 
 ---
