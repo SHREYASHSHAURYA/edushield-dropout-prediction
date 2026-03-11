@@ -86,17 +86,45 @@ This enables proactive academic support strategies.
 
 # Dashboard Overview
 
-The dashboard provides the following components:
+The interactive dashboard provides the following analytics and monitoring tools:
+
+• Key cohort metrics
+
+- Total students
+- High risk student count
+- Average risk score
+- Historical dropout rate
 
 • Course dropout distribution analysis
-• Individual student risk prediction
-• SHAP explanation visualizations
-• Global model feature importance
-• SHAP beeswarm feature distribution
-• Engagement-based risk simulation
-• Recommended intervention actions
-• High-risk student monitoring table
-• Cohort engagement risk progression analysis
+
+• Highest risk student leaderboard
+
+• Individual student selection and profile view
+
+• Predicted dropout probability for selected student
+
+• Risk gauge visualization
+
+• SHAP explanation of prediction drivers
+
+• Global model feature importance analysis
+
+• SHAP beeswarm feature impact distribution
+
+• Early warning engagement simulation
+
+• Sentiment indicators from forum analysis
+
+- negative sentiment ratio
+- negative post count
+
+• Automated intervention recommendations
+
+• Advisor intervention monitoring table for high-risk students
+
+• Course dropout heatmap visualization
+
+• Cohort engagement risk progression simulation
 
 ---
 
