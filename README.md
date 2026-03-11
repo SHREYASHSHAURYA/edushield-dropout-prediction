@@ -209,33 +209,35 @@ Additional engineered features include:
 
 # Project Structure
 
-dropout_predictor  
-│  
-├── dashboard  
-│ └── app.py  
-│  
-├── data  
-│ ├── nlp  
-│ │ ├── sentiment_features.csv  
-│ │ └── student_forum_posts.csv  
-│ │  
-│ └── final_dataset.csv  
-│  
-├── src  
-│ ├── build_dataset.py  
-│ ├── explain_model.py  
-│ ├── generate_forum_data.py  
-│ ├── intervention_recommender.py  
-│ ├── load_data.py  
-│ ├── nlp_sentiment.py  
-│ ├── prepare_ml_data.py  
-│ ├── train_baseline_model.py  
-│ ├── train_random_forest.py  
-│ ├── train_smote_model.py  
-│ └── train_xgboost.py  
-│  
-├── requirements.txt  
+```
+dropout_predictor
+│
+├── dashboard
+│ └── app.py
+│
+├── data
+│ ├── nlp
+│ │ ├── sentiment_features.csv
+│ │ └── student_forum_posts.csv
+│ │
+│ └── final_dataset.csv
+│
+├── src
+│ ├── build_dataset.py
+│ ├── explain_model.py
+│ ├── generate_forum_data.py
+│ ├── intervention_recommender.py
+│ ├── load_data.py
+│ ├── nlp_sentiment.py
+│ ├── prepare_ml_data.py
+│ ├── train_baseline_model.py
+│ ├── train_random_forest.py
+│ ├── train_smote_model.py
+│ └── train_xgboost.py
+│
+├── requirements.txt
 └── README.md
+```
 
 ---
 
@@ -243,31 +245,41 @@ dropout_predictor
 
 ## Install Dependencies
 
+```
 pip install -r requirements.txt
+```
 
 ---
 
 ## Generate NLP Sentiment Features
 
+```
 python src/nlp_sentiment.py
+```
 
 ---
 
 ## Build the Machine Learning Dataset
 
+```
 python src/build_dataset.py
+```
 
 ---
 
 ## Train the Model
 
+```
 python src/train_xgboost.py
+```
 
 ---
 
 ## Launch the Dashboard
 
+```
 streamlit run dashboard/app.py
+```
 
 ---
 
