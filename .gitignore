@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Raw OULAD dataset
+data/studentVle.csv
+data/studentInfo.csv
+data/studentRegistration.csv
+data/studentAssessment.csv
+data/assessments.csv
+data/courses.csv
+data/vle.csv
+data/OULAD.names
+
+# Streamlit cache
+.streamlit/
+
+# Model caches
+.cache/
