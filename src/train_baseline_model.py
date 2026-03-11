@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score, classification_report
 
-data = pd.read_csv("../data/final_dataset.csv")
+data = pd.read_csv("data/final_dataset.csv")
 
 data = data.drop(
     columns=[

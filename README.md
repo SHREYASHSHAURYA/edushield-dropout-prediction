@@ -1,100 +1,163 @@
 # EduShield: Early Student Dropout Risk Prediction & Intervention System
 
-EduShield is an explainable machine learning system designed to identify students at risk of dropping out **early in the semester**.
-It combines behavioral engagement data, academic performance indicators, and forum sentiment signals to predict dropout risk and recommend targeted interventions.
+EduShield is an **explainable machine learning system** designed to identify students at risk of dropping out **early in the semester**.
 
-The system includes a full **machine learning pipeline**, **explainable AI analysis**, and an **interactive Streamlit dashboard** for educators and advisors.
+The system combines **behavioral engagement data, academic performance indicators, and sentiment signals from student forum activity** to predict dropout risk and recommend targeted interventions.
+
+EduShield includes:
+
+• A full **machine learning pipeline**
+• **Explainable AI analysis using SHAP**
+• An **interactive Streamlit analytics dashboard** for educators and advisors
 
 ---
 
-## Problem
+# Problem
 
-Student dropout is a major challenge in higher education and online learning platforms.
+Student dropout is a major challenge in higher education and online learning environments.
+
 Traditional approaches often detect dropout **too late**, when intervention is no longer effective.
 
 EduShield aims to:
 
-- Detect dropout risk **early**
-- Explain **why** a student is at risk
-- Suggest **practical interventions**
-- Provide educators with an **interactive analytics dashboard**
+• Detect dropout risk **early in the learning cycle**
+• Explain **why a student is at risk**
+• Suggest **targeted interventions**
+• Provide educators with **actionable analytics tools**
 
 ---
 
-## Key Features
+# Key Features
 
-### Early Dropout Prediction
+## Early Dropout Prediction
 
-Uses machine learning models to predict the probability of a student dropping out based on:
+Machine learning models estimate the probability of student dropout using:
 
-- engagement metrics
-- assessment performance
-- learning activity patterns
-- sentiment indicators
-
----
-
-### Explainable AI (SHAP)
-
-Model predictions are explained using **SHAP values**, allowing educators to understand:
-
-- which features contributed to the risk
-- how student behavior affects predictions
-- which factors require intervention
+• learning engagement metrics
+• assessment performance indicators
+• behavioral activity patterns
+• sentiment signals from student discussions
 
 ---
 
-### Intervention Recommendation Engine
+## Explainable AI (SHAP)
 
-Based on model explanations, the system suggests actions such as:
+Predictions are explained using **SHAP (SHapley Additive Explanations)**.
 
-- engagement reminders
-- tutoring support
-- deadline flexibility
-- advisor review
-- emotional or counseling support
+This allows educators to understand:
 
----
-
-### Interactive Analytics Dashboard
-
-A Streamlit dashboard provides real-time insights including:
-
-- dropout risk scores
-- explainable model predictions
-- cohort risk visualization
-- engagement simulations
-- high-risk student identification
+• which features contributed to a student's risk score
+• how engagement or academic performance affects predictions
+• which factors require immediate intervention
 
 ---
 
-### Risk Simulation
+## Intervention Recommendation Engine
 
-Educators can simulate behavioral changes such as increased learning activity to see how a student's risk level may change.
+Based on model explanations, the system suggests actionable interventions such as:
 
----
-
-## Dashboard Overview
-
-The dashboard includes:
-
-- Course dropout distribution
-- Student risk prediction
-- SHAP explanation plots
-- Feature importance analysis
-- Risk simulation tools
-- Intervention recommendations
-- High-risk student monitoring
+• engagement reminders
+• tutoring support
+• deadline flexibility discussions
+• advisor outreach
+• emotional or counseling support
 
 ---
 
-## Project Structure
+## Interactive Analytics Dashboard
+
+A **Streamlit dashboard** provides real-time analytics including:
+
+• dropout probability for individual students
+• explainable AI feature importance
+• cohort risk visualization
+• engagement simulations
+• identification of high-risk students
+
+---
+
+## Risk Simulation
+
+Educators can simulate behavioral changes (such as increased engagement activity) to observe how a student's **dropout risk may change over time**.
+
+This enables proactive academic support strategies.
+
+---
+
+# Dashboard Overview
+
+The dashboard provides the following components:
+
+• Course dropout distribution analysis
+• Individual student risk prediction
+• SHAP explanation visualizations
+• Global model feature importance
+• SHAP beeswarm feature distribution
+• Engagement-based risk simulation
+• Recommended intervention actions
+• High-risk student monitoring table
+• Cohort engagement risk progression analysis
+
+---
+
+# Machine Learning Models
+
+Multiple models were evaluated for dropout prediction:
+
+• Logistic Regression (Baseline)
+• Random Forest
+• Logistic Regression with SMOTE (class imbalance handling)
+• XGBoost
+
+---
+
+# Model Evaluation
+
+The models were evaluated on a **70 / 30 train-test split**.
+
+Dataset size: **32,593 students**
+Test samples: **9,778 students**
+
+| Model                          | Accuracy | Precision (Dropout=1) | Recall (Dropout=1) | F1 Score (Dropout=1) | ROC-AUC   |
+| ------------------------------ | -------- | --------------------- | ------------------ | -------------------- | --------- |
+| Logistic Regression (Baseline) | 0.86     | 0.77                  | 0.81               | 0.79                 | 0.937     |
+| Random Forest                  | 0.88     | 0.78                  | 0.84               | 0.81                 | 0.947     |
+| Logistic Regression + SMOTE    | 0.86     | 0.76                  | 0.82               | 0.79                 | 0.933     |
+| XGBoost                        | **0.88** | **0.79**              | 0.83               | **0.81**             | **0.950** |
+
+XGBoost achieved the **highest ROC-AUC (0.95)** and strong overall performance.
+
+Therefore **XGBoost was selected as the primary model for the dashboard deployment**.
+
+---
+
+# Dataset
+
+The system uses the **Open University Learning Analytics Dataset (OULAD)**.
+
+The dataset contains:
+
+• student demographics
+• course information
+• assessment results
+• learning activity engagement
+• registration activity
+
+Additional engineered features include:
+
+• sentiment indicators derived from simulated forum posts
+• behavioral engagement metrics
+• temporal activity indicators
+
+---
+
+# Project Structure
 
 ```
 dropout_predictor
 │
 ├── dashboard
-│   └── app.py                # Streamlit dashboard
+│   └── app.py
 │
 ├── data
 │   ├── nlp
@@ -122,40 +185,9 @@ dropout_predictor
 
 ---
 
-## Machine Learning Models
+# Running the Project
 
-The project explores multiple models for dropout prediction:
-
-- Logistic Regression (baseline)
-- Random Forest
-- XGBoost
-- SMOTE-enhanced models for class imbalance
-
-The final dashboard uses **XGBoost** due to strong performance and interpretability with SHAP.
-
----
-
-## Dataset
-
-The project uses the **Open University Learning Analytics Dataset (OULAD)**, which contains:
-
-- student demographics
-- course information
-- assessment results
-- engagement with learning resources
-- registration activity
-
-Additional features include:
-
-- sentiment indicators from simulated forum posts
-- behavioral engagement metrics
-- derived learning activity features
-
----
-
-## Running the Project
-
-### 1 Install dependencies
+## Install Dependencies
 
 ```
 pip install -r requirements.txt
@@ -163,7 +195,7 @@ pip install -r requirements.txt
 
 ---
 
-### 2 Generate NLP sentiment features
+## Generate NLP Sentiment Features
 
 ```
 python src/nlp_sentiment.py
@@ -171,7 +203,7 @@ python src/nlp_sentiment.py
 
 ---
 
-### 3 Build the machine learning dataset
+## Build the Machine Learning Dataset
 
 ```
 python src/build_dataset.py
@@ -179,7 +211,7 @@ python src/build_dataset.py
 
 ---
 
-### 4 Train the model
+## Train the Model
 
 ```
 python src/train_xgboost.py
@@ -187,7 +219,7 @@ python src/train_xgboost.py
 
 ---
 
-### 5 Launch the dashboard
+## Launch the Dashboard
 
 ```
 streamlit run dashboard/app.py
@@ -195,44 +227,44 @@ streamlit run dashboard/app.py
 
 ---
 
-## Technologies Used
+# Technologies Used
 
-- Python
-- Pandas
-- Scikit-learn
-- XGBoost
-- SHAP (Explainable AI)
-- Streamlit
-- Matplotlib
-- Plotly
-
----
-
-## Potential Applications
-
-This system can be applied to:
-
-- universities
-- online learning platforms
-- learning management systems
-- academic advising systems
-
-to enable **data-driven student support and early intervention strategies**.
+• Python
+• Pandas
+• Scikit-learn
+• XGBoost
+• SHAP (Explainable AI)
+• Streamlit
+• Matplotlib
+• Plotly
 
 ---
 
-## Future Improvements
+# Potential Applications
+
+EduShield can be deployed in:
+
+• universities
+• online learning platforms
+• learning management systems
+• academic advising systems
+
+to enable **data-driven student success initiatives and early intervention strategies**.
+
+---
+
+# Future Improvements
 
 Possible extensions include:
 
-- real-time LMS integration
-- temporal dropout prediction models
-- deep learning for behavioral patterns
-- automated intervention planning
-- cohort-level risk monitoring
+• real-time LMS integration
+• temporal dropout prediction models
+• sequential deep learning models for behavioral patterns
+• automated intervention recommendation systems
+• institution-level cohort risk monitoring
 
 ---
 
-## License
+# License
 
-This project is intended for educational and research purposes.
+This project is intended for **educational and research purposes**.
