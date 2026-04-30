@@ -7,9 +7,7 @@ The system combines **behavioral engagement data, academic performance indicator
 EduShield includes:
 
 • A full **machine learning pipeline**
-
 • **Explainable AI analysis using SHAP**
-
 • An **interactive Streamlit analytics dashboard** for educators and advisors
 
 ---
@@ -23,11 +21,8 @@ Traditional approaches often detect dropout **too late**, when intervention is n
 EduShield aims to:
 
 • Detect dropout risk **early in the learning cycle**
-
 • Explain **why a student is at risk**
-
 • Suggest **targeted interventions**
-
 • Provide educators with **actionable analytics tools**
 
 ---
@@ -39,11 +34,8 @@ EduShield aims to:
 Machine learning models estimate the probability of student dropout using:
 
 • learning engagement metrics
-
 • assessment performance indicators
-
 • behavioral activity patterns
-
 • sentiment signals from student discussions
 
 ---
@@ -55,9 +47,7 @@ Predictions are explained using **SHAP (SHapley Additive Explanations)**.
 This allows educators to understand:
 
 • which features contributed to a student's risk score
-
 • how engagement or academic performance affects predictions
-
 • which factors require immediate intervention
 
 ---
@@ -67,30 +57,27 @@ This allows educators to understand:
 Based on model explanations, the system suggests actionable interventions such as:
 
 • engagement reminders
-
 • tutoring support
-
 • deadline flexibility discussions
-
 • advisor outreach
-
 • emotional or counseling support
 
 ---
 
 ## Interactive Analytics Dashboard
 
-A **Streamlit dashboard** provides real-time analytics including:
+A Streamlit dashboard provides real-time analytics including:
 
-• dropout probability for individual students
-
-• explainable AI feature importance
-
-• cohort risk visualization
-
-• engagement simulations
-
-• identification of high-risk students
+• cohort-level key metrics (total students, risk distribution, dropout rate)  
+• risk segmentation (low / medium / high)  
+• feature distribution analysis  
+• dropout prediction for individual students  
+• explainable AI visualizations (SHAP)  
+• global feature importance and impact distributions  
+• engagement-based risk simulation  
+• cohort risk progression visualization  
+• high-risk student monitoring  
+• downloadable reports for analysis
 
 ---
 
@@ -99,6 +86,51 @@ A **Streamlit dashboard** provides real-time analytics including:
 Educators can simulate behavioral changes (such as increased engagement activity) to observe how a student's **dropout risk may change over time**.
 
 This enables proactive academic support strategies.
+
+---
+
+## Data Engineering Layer
+
+EduShield includes a lightweight data engineering pipeline to support scalable data processing and analysis.
+
+### ETL Pipeline
+
+A structured ETL pipeline was implemented to:
+
+• Load raw student data  
+• Clean and preprocess features  
+• Transform categorical and behavioral variables  
+• Prepare model-ready datasets
+
+This ensures consistency and reproducibility across experiments.
+
+---
+
+### SQL Integration
+
+The processed dataset is stored in a relational database (SQLite), enabling:
+
+• efficient querying of student records  
+• cohort-level aggregation and filtering  
+• analytical queries for risk segmentation
+
+Example use cases include:
+
+• identifying high-risk student groups  
+• computing engagement trends  
+• extracting subsets for intervention analysis
+
+---
+
+### Data Validation
+
+Data quality checks are applied before model training:
+
+• missing value detection  
+• duplicate record validation  
+• range checks for key features (scores, engagement)
+
+This ensures robustness and reliability of model predictions.
 
 ---
 
@@ -114,35 +146,37 @@ The interactive dashboard provides the following analytics and monitoring tools:
 - Historical dropout rate
 
 • Course dropout distribution analysis
-
 • Highest risk student leaderboard
-
 • Individual student selection and profile view
-
 • Predicted dropout probability for selected student
-
 • Risk gauge visualization
-
 • SHAP explanation of prediction drivers
-
 • Global model feature importance analysis
-
 • SHAP beeswarm feature impact distribution
-
 • Early warning engagement simulation
-
 • Sentiment indicators from forum analysis
 
 - negative sentiment ratio
 - negative post count
 
 • Automated intervention recommendations
-
 • Advisor intervention monitoring table for high-risk students
-
 • Course dropout heatmap visualization
-
 • Cohort engagement risk progression simulation
+
+---
+
+## Analytics & Insights
+
+The system generates actionable insights to support decision-making:
+
+• risk segmentation across student populations  
+• engagement vs dropout relationship analysis  
+• feature distribution summaries  
+• cohort-level dropout trends  
+• identification of intervention targets
+
+These analytics help educators move from prediction to action.
 
 ---
 
@@ -151,11 +185,8 @@ The interactive dashboard provides the following analytics and monitoring tools:
 Multiple models were evaluated for dropout prediction:
 
 • Logistic Regression (Baseline)
-
 • Random Forest
-
 • Logistic Regression with SMOTE (class imbalance handling)
-
 • XGBoost
 
 ---
@@ -188,21 +219,15 @@ The system uses the **Open University Learning Analytics Dataset (OULAD)**.
 The dataset contains:
 
 • student demographics
-
 • course information
-
 • assessment results
-
 • learning activity engagement
-
 • registration activity
 
 Additional engineered features include:
 
 • sentiment indicators derived from simulated forum posts
-
 • behavioral engagement metrics
-
 • temporal activity indicators
 
 ---
@@ -286,20 +311,26 @@ streamlit run dashboard/app.py
 # Technologies Used
 
 • Python
-
 • Pandas
-
 • Scikit-learn
-
 • XGBoost
-
 • SHAP (Explainable AI)
-
 • Streamlit
-
 • Matplotlib
-
 • Plotly
+• SQLite (SQL-based data storage and querying)
+• Data Engineering (ETL pipelines, validation)
+
+---
+
+## Export & Reporting
+
+The dashboard supports data export for further analysis:
+
+• full dataset download  
+• high-risk student report extraction
+
+This enables integration with external analytics workflows and reporting systems.
 
 ---
 
@@ -308,11 +339,8 @@ streamlit run dashboard/app.py
 EduShield can be deployed in:
 
 • universities
-
 • online learning platforms
-
 • learning management systems
-
 • academic advising systems
 
 to enable **data-driven student success initiatives and early intervention strategies**.
@@ -324,13 +352,9 @@ to enable **data-driven student success initiatives and early intervention strat
 Possible extensions include:
 
 • real-time LMS integration
-
 • temporal dropout prediction models
-
 • sequential deep learning models for behavioral patterns
-
 • automated intervention recommendation systems
-
 • institution-level cohort risk monitoring
 
 ---
