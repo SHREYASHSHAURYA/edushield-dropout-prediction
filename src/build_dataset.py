@@ -1,4 +1,5 @@
 import pandas as pd
+from db_utils import save_to_db
 
 data_path = "../data/"
 
@@ -211,3 +212,7 @@ print(dataset[["negative_sentiment_ratio", "negative_post_count"]].head())
 dataset.to_csv("../data/final_dataset.csv", index=False)
 
 print("\nDataset saved to data/final_dataset.csv")
+
+save_to_db(dataset)
+
+print("Dataset also saved to SQLite DB")

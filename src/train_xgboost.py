@@ -3,7 +3,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, classification_report
 from xgboost import XGBClassifier
 
-data = pd.read_csv("data/final_dataset.csv")
+from etl_pipeline import run_etl
+
+data = run_etl("../data/final_dataset.csv")
 
 data = data.drop(
     columns=[

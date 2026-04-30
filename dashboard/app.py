@@ -4,8 +4,32 @@ import xgboost as xgb
 import shap
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
+import base64
+
+st.set_option("client.showErrorDetails", False)
+
 
 st.set_page_config(page_title="Student Dropout Risk Dashboard", layout="wide")
+
+st.markdown(
+    """
+<style>
+[data-testid="stAppViewContainer"] {
+    background-color: #FFF0E5;  
+}
+
+[data-testid="stSidebar"] {
+    background-color: #FFDAB9;
+}
+
+button[kind="secondary"] {
+    background-color: #262730 !important;
+    color: white !important;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
 st.title("Early Student Dropout Risk Predictor")
 
@@ -72,6 +96,45 @@ with colC:
 
 with colD:
     st.metric("Historical Dropout Rate", f"{dropout_rate:.2%}")
+
+st.subheader("Risk Segmentation Overview")
+
+col1, col2, col3 = st.columns(3)
+
+low_count = (data["risk_score"] < 0.3).sum()
+medium_count = ((data["risk_score"] >= 0.3) & (data["risk_score"] <= 0.7)).sum()
+high_count = (data["risk_score"] > 0.7).sum()
+
+with col1:
+    st.metric("Low Risk", int(low_count))
+
+with col2:
+    st.metric("Medium Risk", int(medium_count))
+
+with col3:
+    st.metric("High Risk", int(high_count))
+
+
+st.subheader("Risk Score Distribution")
+
+fig, ax = plt.subplots()
+ax.hist(data["risk_score"], bins=30)
+ax.set_title("Risk Score Distribution")
+st.pyplot(fig)
+plt.close(fig)
+
+
+st.subheader("Average Feature Values (Top Drivers)")
+
+top_features = [
+    "vle_clicks_30_days",
+    "avg_score_first_2_assessments",
+    "assessment_submission_count",
+]
+
+feature_means = data[top_features].mean().round(2)
+
+st.bar_chart(feature_means)
 
 
 def risk_category(x):
@@ -185,6 +248,7 @@ fig = plt.figure()
 shap.plots.waterfall(shap_values[0], max_display=10, show=False)
 
 st.pyplot(fig)
+plt.close(fig)
 
 st.subheader("Global Dropout Drivers (Model Insight)")
 
@@ -197,6 +261,7 @@ fig2 = plt.figure()
 shap.plots.bar(sample_shap, max_display=10, show=False)
 
 st.pyplot(fig2)
+plt.close(fig)
 
 st.subheader("Feature Impact Distribution (SHAP Beeswarm)")
 
@@ -209,6 +274,7 @@ fig4 = plt.figure()
 shap.plots.beeswarm(beeswarm_values, max_display=10, show=False)
 
 st.pyplot(fig4)
+plt.close(fig)
 
 st.subheader("Early Warning Simulation")
 
@@ -293,6 +359,34 @@ st.dataframe(
     ].head(20)
 )
 
+import base64
+
+st.subheader("Download Reports")
+
+
+def create_download_link(df, filename, label):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">{label}</a>'
+    return href
+
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown(
+        create_download_link(data, "student_dropout_full.csv", "Download Full Dataset"),
+        unsafe_allow_html=True,
+    )
+
+with col2:
+    st.markdown(
+        create_download_link(
+            high_risk_students, "high_risk_students.csv", "Download High Risk Students"
+        ),
+        unsafe_allow_html=True,
+    )
+
 st.subheader("Course Dropout Heatmap")
 
 course_dropout = data.groupby("code_module")["dropout"].mean().reset_index()
@@ -312,6 +406,7 @@ ax.set_yticklabels(course_dropout.index)
 ax.set_title("Dropout Rate by Course")
 
 st.pyplot(fig)
+plt.close(fig)
 
 st.subheader("Cohort Risk Progression Simulation")
 
@@ -342,3 +437,4 @@ ax.set_ylabel("Dropout Risk")
 ax.set_title("Risk Change with Engagement")
 
 st.pyplot(fig3)
+plt.close(fig)
